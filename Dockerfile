@@ -2,13 +2,13 @@ FROM node:12.13-alpine As development
 
 WORKDIR /usr/src/app
 
-COPY yarn*.lock ./
+COPY package*.json ./
 
-RUN yarn install
+RUN npm install --only=development
 
 COPY . .
 
-RUN yarn start:dev
+RUN npm run build
 
 # FROM node:12.13-alpine as production
 
