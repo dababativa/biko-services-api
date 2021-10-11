@@ -2,9 +2,9 @@ FROM node:12.13-alpine As development
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY yarn*.lock ./
 
-RUN npm install --only=development
+RUN yarn install
 
 COPY . .
 
