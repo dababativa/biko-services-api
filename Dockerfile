@@ -1,6 +1,6 @@
 FROM node:12.13-alpine As development
 
-WORKDIR /usr/src/app
+WORKDIR /home/ubuntu/biko-services-api
 
 COPY package*.json ./
 
@@ -8,7 +8,7 @@ RUN npm install --only=development
 
 COPY . .
 
-RUN npm run build
+RUN npm start
 
 # FROM node:12.13-alpine as production
 
