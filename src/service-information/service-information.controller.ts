@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateServiceInformationDto } from './dto/create-service-information.dto';
 import { ServiceInformation } from './service-information.entity';
@@ -12,8 +13,13 @@ export class ServiceInformationController {
     }
 
     @Get("/:id")
-    getServiceInformation(@Param("id") id: number): Promise<ServiceInformation> {
+    getServiceInformationById(@Param("id") id: number): Promise<ServiceInformation> {
         return this.serviceInformationService.getServiceInformationById(id);
+    }
+
+    @Get("")
+    getServiceInformation(): Promise<ServiceInformation[]> {
+        return this.serviceInformationService.getServiceInformation();
     }
 
     @Post()

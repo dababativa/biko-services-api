@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateServiceInformationDto } from './dto/create-service-information.dto';
@@ -20,6 +21,11 @@ export class ServiceInformationService {
         if (!serviceInformation){
             throw new NotFoundException(`Service Information with id ${id} not found`);
         } 
+        return serviceInformation;
+    }
+
+    async getServiceInformation():Promise<ServiceInformation[]>{
+        const serviceInformation = await this.serviceInformationRepository.find()
         return serviceInformation;
     }
 
