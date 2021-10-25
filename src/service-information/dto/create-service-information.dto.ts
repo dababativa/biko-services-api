@@ -1,7 +1,11 @@
-import { ServiceInformationType } from "../service-information-type.enum";
+/* eslint-disable prettier/prettier */
+import { IsEnum, IsPositive } from 'class-validator';
+import { ServiceInformationType } from '../service-information-type.enum';
 
 export class CreateServiceInformationDto {
-    type: ServiceInformationType;
-    
-    fee: number;
+  @IsEnum(ServiceInformationType)
+  type: ServiceInformationType;
+
+  @IsPositive()
+  fee: number;
 }
