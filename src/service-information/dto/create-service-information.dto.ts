@@ -11,4 +11,9 @@ export class CreateServiceInformationDto {
   @IsNumber()
   @IsPositive()
   fee: number;
+
+  @Transform(({value})=>parseFloat(value))
+  @IsNumber()
+  @IsPositive()
+  fkBiko: number;
 }

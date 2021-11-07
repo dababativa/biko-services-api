@@ -1,30 +1,46 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { CreateServiceInformationDto } from './dto/create-service-information.dto';
 import { ServiceInformation } from './service-information.entity';
 import { ServiceInformationService } from './service-information.service';
 
 @Controller('service-information')
 export class ServiceInformationController {
+  constructor(
+    private serviceInformationService: ServiceInformationService,
+    private httpService: HttpService,
+  ) {}
 
+  @Get('/:id')
+  getServiceInformationById(
+    @Param('id') id: number,
+  ): Promise<ServiceInformation> {
+    return this.serviceInformationService.getServiceInformationById(id);
+  }
 
-    constructor(private serviceInformationService: ServiceInformationService){
+  @Get('')
+  async getServiceInformation(){
+    return await this.serviceInformationService.getServiceInformation();
+  }
 
+  @Post()
+  async createServiceInformation(
+    @Body() createServiceInformationDto: CreateServiceInformationDto,
+  ) {
+    const user = await this.httpService.get(
+        `http://localhost:3001/users/${createServiceInformationDto.fkBiko}`,
+      ).toPromise().catch((e)=>{
+          return e.response.data
+      }).then((data) => data.data)
+      console.log(user)
+    if (user){
+        return this.serviceInformationService.createServiceInformation(
+            createServiceInformationDto, user);
+    } else {
+        throw new NotFoundException(`Biko with id ${createServiceInformationDto.fkBiko} not found`)
     }
-
-    @Get("/:id")
-    getServiceInformationById(@Param("id") id: number): Promise<ServiceInformation> {
-        return this.serviceInformationService.getServiceInformationById(id);
-    }
-
-    @Get("")
-    getServiceInformation(): Promise<ServiceInformation[]> {
-        return this.serviceInformationService.getServiceInformation();
-    }
-
-    @Post()
-    createServiceInformation(@Body() createServiceInformationDto: CreateServiceInformationDto):Promise<ServiceInformation>{
-        return this.serviceInformationService.createServiceInformation(createServiceInformationDto) 
-    }
-
+    
+  }
+  
 }

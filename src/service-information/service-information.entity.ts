@@ -1,18 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { ServiceInformationType } from "./service-information-type.enum";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ServiceInformationType } from './service-information-type.enum';
 
 @Entity()
 export class ServiceInformation {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id:number;
-    
+  @Column()
+  type: ServiceInformationType;
 
-    @Column()
-    type: ServiceInformationType;
+  @Column()
+  fee: number;
 
-    @Column()
-    fee:number;
-
-
+  @Column({default:1})
+  fkBiko: number;
 }
