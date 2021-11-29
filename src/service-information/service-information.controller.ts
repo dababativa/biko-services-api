@@ -29,7 +29,7 @@ export class ServiceInformationController {
     @Body() createServiceInformationDto: CreateServiceInformationDto,
   ) {
     const user = await this.httpService.get(
-        `http://18.191.16.27:3000/users/${createServiceInformationDto.fkBiko}`,
+        `http://3.145.33.186:3000/users/${createServiceInformationDto.fkBiko}`,
       ).toPromise().catch((e)=>{
           return e.response.data
       }).then((data) => data.data)

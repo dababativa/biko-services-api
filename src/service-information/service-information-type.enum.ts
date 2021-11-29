@@ -1,5 +1,5 @@
 export enum ServiceInformationType {
-    MANTEINANCE = 'MANTEINANCE',
+    MAINTENANCE = 'MAINTENANCE',
     ESCORT = 'ESCORT',
     CAR = 'CAR'
 

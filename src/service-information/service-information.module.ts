@@ -12,5 +12,6 @@ import { HttpModule } from '@nestjs/axios';
     TypeOrmModule.forFeature([ServiceInformationRepository]),
     HttpModule,
   ],
+  exports: [ServiceInformationService],
 })
 export class ServiceInformationModule {}

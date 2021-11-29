@@ -9,7 +9,7 @@ import { ServiceInformationRepository } from './service-information.repository';
 @Injectable()
 export class ServiceInformationService {
 
-    usersMicroservice = "http://18.191.16.27:3000"
+    usersMicroservice = "http://3.145.33.186:3000"
 
  constructor(
     @InjectRepository(ServiceInformationRepository)

@@ -1,5 +1,5 @@
 export enum ServiceType {
-  MANTEINANCE = 'MANTEINANCE',
+  MAINTENANCE = 'MAINTENANCE',
   ESCORT = 'ESCORT',
   CAR = 'CAR',
 }
