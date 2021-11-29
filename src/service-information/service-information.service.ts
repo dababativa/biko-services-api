@@ -40,12 +40,13 @@ export class ServiceInformationService {
         const serviceInformation = await this.serviceInformationRepository.find()
         const serviceInformationWithBiko = []
         for (let service of serviceInformation){
+            console.log(service.fkBiko)
             const user = await this.httpService.get(
                 `${this.usersMicroservice}/users/${service.fkBiko}`,
               ).toPromise().catch((e)=>{
                   return e.response.data
               }).then((data) => data.data)
-            // console.log(user)
+            console.log(user)
             if (user){
                 service.fkBiko = user
             }

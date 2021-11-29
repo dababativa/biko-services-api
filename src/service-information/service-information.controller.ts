@@ -30,6 +30,7 @@ export class ServiceInformationController {
   async createServiceInformation(
     @Body() createServiceInformationDto: CreateServiceInformationDto,
   ) {
+    console.log(createServiceInformationDto.fkBiko)
     const user = await this.httpService.get(
         `${this.usersMicroservice}/users/${createServiceInformationDto.fkBiko}`,
       ).toPromise().catch((e)=>{

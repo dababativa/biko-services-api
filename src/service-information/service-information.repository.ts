@@ -10,9 +10,11 @@ export class ServiceInformationRepository extends Repository<ServiceInformation>
     user,
   ): Promise<ServiceInformation> {
     const { fee, type } = createServiceInformationDto;
-    const serviceInformation = this.create({ fee, type });
+    const serviceInformation = this.create({ fee, type, fkBiko: user.id });
     await this.save(serviceInformation);
+    console.log(user)
     serviceInformation.fkBiko = user;
+    console.log(serviceInformation)
     return serviceInformation;
   }
 }

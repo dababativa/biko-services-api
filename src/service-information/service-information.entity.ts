@@ -12,6 +12,6 @@ export class ServiceInformation {
   @Column()
   fee: number;
 
-  @Column({default:1})
+  @Column()
   fkBiko: number;
 }
