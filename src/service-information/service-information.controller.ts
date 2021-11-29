@@ -12,6 +12,8 @@ export class ServiceInformationController {
     private httpService: HttpService,
   ) {}
 
+  usersMicroservice = "http://3.145.65.26:3000"
+
   @Get('/:id')
   getServiceInformationById(
     @Param('id') id: number,
@@ -29,7 +31,7 @@ export class ServiceInformationController {
     @Body() createServiceInformationDto: CreateServiceInformationDto,
   ) {
     const user = await this.httpService.get(
-        `http://3.145.33.186:3000/users/${createServiceInformationDto.fkBiko}`,
+        `${this.usersMicroservice}/users/${createServiceInformationDto.fkBiko}`,
       ).toPromise().catch((e)=>{
           return e.response.data
       }).then((data) => data.data)

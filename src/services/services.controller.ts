@@ -17,7 +17,7 @@ export class ServicesController {
     private maintenanceServicesService: MaintenanceServicesService,
     private httpService: HttpService,
   ) {}
-  usersMicroservice = "http://3.145.33.186:3000"
+  usersMicroservice = "http://3.145.65.26:3000"
 
   @Post('/:id/book-service')
   async bookService(
