@@ -12,7 +12,7 @@ export class ServiceInformationController {
     private httpService: HttpService,
   ) {}
 
-  usersMicroservice = "http://3.145.65.26:3001"
+  usersMicroservice = "http://3.145.65.26:3000"
 
   @Get('/:id')
   getServiceInformationById(
