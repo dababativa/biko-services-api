@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Transform } from 'class-transformer';
-import { IsEnum, IsNumber, IsNumberString, IsOptional, IsPositive} from 'class-validator';
+import { IsEnum, IsNumber, IsNumberString, IsOptional, IsPositive, IsString} from 'class-validator';
 import { BookMaintenanceServiceDto } from 'src/maintenance-services/dto/book-maintenance-service.dto';
 import { BookSecurityServiceDto } from 'src/security-services/dto/book-security-service.dto';
 import { ServiceInformationType } from '../../service-information/service-information-type.enum';
 
 export class BookServiceDto {
+  
   @IsEnum(ServiceInformationType)
   type: ServiceInformationType;
 
@@ -15,10 +16,18 @@ export class BookServiceDto {
   fkCyclist: number;
 
   @IsOptional()
-  @Transform(({value})=> JSON.stringify(value))
-  bookSecurityServiceDto: BookSecurityServiceDto;
+  @Transform(({ value }) => parseFloat(value))
+  @IsNumber()
+  @IsPositive()
+  groupSize: number;
+
+  @IsOptional()
+  @IsString()
+  startingTime: string;
   
   @IsOptional()
-  @Transform(({value})=> JSON.stringify(value))
-  bookMaintenanceServiceDto: BookMaintenanceServiceDto;
+  @IsString()
+  endTime: string;
+
+  
 }

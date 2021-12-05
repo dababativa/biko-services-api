@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { ServiceType } from "src/services/service-type.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ServiceInformationType } from "src/service-information/service-information-type.enum";
+import { ServiceInformation } from "src/service-information/service-information.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class SecurityService {
@@ -8,19 +9,19 @@ export class SecurityService {
     @PrimaryGeneratedColumn()
     id: number; 
 
-    @Column()
+    @CreateDateColumn({type: 'timestamptz', nullable: true})
     date: Date;
 
     @Column()
-    type: ServiceType;
+    type: ServiceInformationType;
     
-    @Column()
+    @Column({nullable: true})
     fee: number;
 
-    @Column()
+    @Column({default: 1})
     state: number;
 
-    @Column()
+    @Column({nullable: true})
     rating: number;
 
     @Column()
@@ -31,4 +32,10 @@ export class SecurityService {
 
     @Column()
     groupSize: number;
+    
+    @Column()
+    fkCyclist: number;
+
+    @ManyToOne(type=>ServiceInformation)
+    fkServiceInformation: ServiceInformation;
 }
